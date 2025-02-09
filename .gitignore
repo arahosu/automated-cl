@@ -1,0 +1,15 @@
+./data
+/data
+
+/venv
+./venv
+
+/wandb
+./wandb
+
+/save_models
+./save_models
+
+__pycache__
+/__pycache__
+./__pycache__

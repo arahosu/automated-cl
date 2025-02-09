@@ -3,10 +3,10 @@ SEED=1
 
 export CUDA_VISIBLE_DEVICES=0
 
-export TORCH_EXTENSIONS_DIR="/home/me/torch_extensions"
+export TORCH_EXTENSIONS_DIR="/home/Joonsu/torch_extensions"
 
-CODE=
-DATA=
+CODE='/home/Joonsu/automated-cl'
+DATA='/home/Joonsu/automated-cl/data'
 
 python3 ${CODE}/main.py \
   --data_dir ${DATA} \
@@ -40,4 +40,4 @@ python3 ${CODE}/main.py \
   --use_instance_norm \
   --loss_scale_task_a 0.1 \
   --use_cache \
-  --project_name 'my_project' \
+  --project_name 'acl-srwm' \

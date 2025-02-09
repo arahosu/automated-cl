@@ -3,6 +3,7 @@ import pickle
 from PIL import Image
 import h5py
 import json
+import gdown
 
 from torchmeta_local.utils.data import Dataset, ClassDataset, CombinationMetaDataset
 # QKFIX: See torchmeta_local.datasets.utils for more informations
@@ -173,11 +174,19 @@ class MiniImagenetClassDataset(ClassDataset):
 
         filename = os.path.join(self.root, self.gz_filename)
         if not os.path.isfile(filename):
-            download_file_from_google_drive(self.gdrive_id, self.root,
-                self.gz_filename, md5=self.gz_md5)
+            # download_file_from_google_drive(self.gdrive_id, self.root,
+            #     self.gz_filename, md5=self.gz_md5)
+            print('Downloading Mini-ImageNet dataset...')
+            gdown.download(
+                id=self.gdrive_id,
+                output=filename,
+                quiet=False
+            )
 
-        with tarfile.open(filename, 'r') as f:
-            f.extractall(self.root)
+        # Extract files
+        print('Extracting downloaded file...')
+        with tarfile.open(filename, 'r:gz') as tar:
+            tar.extractall(path=self.root)
 
         for split in ['train', 'val', 'test']:
             filename = os.path.join(self.root, self.filename.format(split))
